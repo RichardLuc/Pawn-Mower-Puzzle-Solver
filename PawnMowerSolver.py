@@ -7,6 +7,7 @@ def print_board(board):
 			print (board[i][j], end = "|")
 		print ("") #new line
 	print ("", end = "  a|b|c|d|e|f|g|h")
+	print ("")
 	return None
 
 def move_piece(board, piece, dir):
@@ -24,7 +25,7 @@ def move_piece(board, piece, dir):
 		if dir == 1:
 			for x in range(i, -1, -1):
 				if newBoard[x][j] == 'p':
-					newBoard[x][j] = 'r'
+					newBoard[x][j] = piece
 					xCoord = 8 - x
 					yCoord = j + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
@@ -33,7 +34,7 @@ def move_piece(board, piece, dir):
 		elif dir == 2:
 			for y in range(j, 8):
 				if newBoard[i][y] == 'p':
-					newBoard[i][y] = 'r'
+					newBoard[i][y] = piece
 					xCoord = 8 - i
 					yCoord = y + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
@@ -42,16 +43,16 @@ def move_piece(board, piece, dir):
 		elif dir == 3:
 			for x in range(i, 8):
 				if newBoard[x][j] == 'p':
-					newBoard[x][j] = 'r'
+					newBoard[x][j] = piece
 					xCoord = 8 - x
-					yCoord = i + 97
+					yCoord = j + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
 					return newBoard, nextSol
 			return False, False
 		elif dir == 4:
 			for y in range(j, -1, -1):
 				if newBoard[i][y] == 'p':
-					newBoard[i][y] = 'r'
+					newBoard[i][y] = piece
 					xCoord = 8 - i
 					yCoord = y + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
@@ -61,40 +62,186 @@ def move_piece(board, piece, dir):
 		if dir == 1:
 			for x, y in zip(range(i, -1, -1), range(j, 8)):
 				if newBoard[x][y] == 'p':
-					newBoard[x][y] = 'b'
+					newBoard[x][y] = piece
 					xCoord = 8 - x
 					yCoord = y + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
 					return newBoard, nextSol
 			return False, False
-		if dir == 2:
+		elif dir == 2:
 			for x, y in zip(range(i, 8), range(j, 8)):
 				if newBoard[x][y] == 'p':
-					newBoard[x][y] = 'b'
+					newBoard[x][y] = piece
 					xCoord = 8 - x
 					yCoord = y + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
 					return newBoard, nextSol
 			return False, False
-		if dir == 3:
+		elif dir == 3:
 			for x, y in zip(range(i, 8), range(j, -1, -1)):
 				if newBoard[x][y] == 'p':
-					newBoard[x][y] = 'b'
+					newBoard[x][y] = piece
 					xCoord = 8 - x
 					yCoord = y + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
 					return newBoard, nextSol
 			return False, False
-		if dir == 4:
+		elif dir == 4:
 			for x, y in zip(range(i, -1, -1), range(j, -1, -1)):
 				if newBoard[x][y] == 'p':
-					newBoard[x][y] = 'b'
+					newBoard[x][y] = piece
 					xCoord = 8 - x
 					yCoord = y + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
 					return newBoard, nextSol
 			return False, False
-	return False
+	elif piece == 'q':
+		if dir == 1:
+			for x in range(i, -1, -1):
+				if newBoard[x][j] == 'p':
+					newBoard[x][j] = piece
+					xCoord = 8 - x
+					yCoord = j + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 2:
+			for x, y in zip(range(i, -1, -1), range(j, 8)):
+				if newBoard[x][y] == 'p':
+					newBoard[x][y] = piece
+					xCoord = 8 - x
+					yCoord = y + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 3:
+			for y in range(j, 8):
+				if newBoard[i][y] == 'p':
+					newBoard[i][y] = piece
+					xCoord = 8 - i
+					yCoord = y + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 4:
+			for x, y in zip(range(i, 8), range(j, 8)):
+				if newBoard[x][y] == 'p':
+					newBoard[x][y] = piece
+					xCoord = 8 - x
+					yCoord = y + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 5:
+			for x in range(i, 8):
+				if newBoard[x][j] == 'p':
+					newBoard[x][j] = piece
+					xCoord = 8 - x
+					yCoord = j + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 6:
+			for x, y in zip(range(i, 8), range(j, -1, -1)):
+				if newBoard[x][y] == 'p':
+					newBoard[x][y] = piece
+					xCoord = 8 - x
+					yCoord = y + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 7:
+			for y in range(j, -1, -1):
+				if newBoard[i][y] == 'p':
+					newBoard[i][y] = piece
+					xCoord = 8 - i
+					yCoord = y + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 8:
+			for x, y in zip(range(i, -1, -1), range(j, -1, -1)):
+				if newBoard[x][y] == 'p':
+					newBoard[x][y] = piece
+					xCoord = 8 - x
+					yCoord = y + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+	elif piece == 'k':
+		if dir == 1:
+			if (i - 2) > -1 and (j + 1) < 8:
+				if newBoard[i - 2][j + 1] == 'p':
+					newBoard[i - 2][j + 1] = piece
+					xCoord = 8 - i + 2
+					yCoord = 97 + j + 1
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 2:
+			if (i - 1) > -1 and (j + 2) < 8:
+				if newBoard[i - 1][j + 2] == 'p':
+					newBoard[i - 1][j + 2] = piece
+					xCoord = 8 - i + 1
+					yCoord = 97 + j + 2
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 3:
+			if (i + 1) < 8 and (j + 2) < 8:
+				if newBoard[i + 1][j + 2] == 'p':
+					newBoard[i + 1][j + 2] = piece
+					xCoord = 8 - i - 1
+					yCoord = 97 + j + 2
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 4:
+			if (i + 2) < 8 and (j + 1) < 8:
+				if newBoard[i + 2][j + 1] == 'p':
+					newBoard[i + 2][j + 1] = piece
+					xCoord = 8 - i - 2
+					yCoord = 97 + j + 1
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 5:
+			if (i + 2) < 8 and (j - 1) > -1:
+				if newBoard[i + 2][j - 1] == 'p':
+					newBoard[i + 2][j - 1] = piece
+					xCoord = 8 - i - 2
+					yCoord = 97 + j - 1
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 6:
+			if (i + 1) < 8 and (j - 2) > -1:
+				if newBoard[i + 1][j - 2] == 'p':
+					newBoard[i + 1][j - 2] = piece
+					xCoord = 8 - i - 1
+					yCoord = 97 + j - 2
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 7:
+			if (i - 1) > -1 and (j - 2) > -1:
+				if newBoard[i - 1][j - 2] == 'p':
+					newBoard[i - 1][j - 2] = piece
+					xCoord = 8 - i + 1
+					yCoord = 97 + j - 2
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		elif dir == 8:
+			if (i - 2) > -1 and (j - 1) > -1:
+				if newBoard[i - 2][j - 1] == 'p':
+					newBoard[i - 2][j - 1] = piece
+					xCoord = 8 - i + 2
+					yCoord = 97 + j - 1
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+	return False, False
 
 def puzzle(board, piece, numDir, numPawns):
 	boardList = []
@@ -110,6 +257,7 @@ def puzzle(board, piece, numDir, numPawns):
 	while bool:
 		currBoard = boardList[-1]
 		nextBoard, nextSol = move_piece(currBoard, piece, dir)
+
 		if nextBoard != False and dirList[-1][dir - 1] != True:
 			boardList.append(nextBoard)
 			solution.append(nextSol)
@@ -132,15 +280,9 @@ def puzzle(board, piece, numDir, numPawns):
 					dir = 1
 		if pawns == 0:
 			bool = False
+
 	print(solution)
 	return None
-
-def test():
-	board = [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', 'p', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', 'p', ' ', 'p', ' ', 'p', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], ['p', ' ', ' ', ' ', 'b', ' ', ' ', ' '], [' ', 'p', ' ', ' ', ' ', 'p', ' ', ' '], [' ', ' ', 'p', ' ', ' ', ' ', ' ', ' ']]
-	piece = 'b'
-	dir = 4
-	pawns = 8
-	puzzle(board, piece, dir, pawns)
 
 def main():
 	board = [[' ' for x in range(0, 8)] for y in range(0, 8)]
@@ -151,10 +293,12 @@ def main():
 	numPawns = int(input("Enter the the amount of pawns on the board: "))
 	for i in range(0, numPawns):
 		xCoord = ord(input("Enter the x-coordinate of the pawn: "))
-		xCoord = 97 - xCoord
+		xCoord = xCoord - 97
 		yCoord = int(input("Enter the y-coordinate of the pawn: "))
 		yCoord = 8 - yCoord
 		board[yCoord][xCoord] = 'p'
+		print(xCoord)
+		print(yCoord)
 	print("Here is what your board currently looks like:")
 	print_board(board)
 
@@ -176,5 +320,6 @@ def main():
 		piece = 'k'
 		numDir = 8
 	board[yCoord][xCoord] = piece
-	print_board(board)
+
+	puzzle(board, piece, numDir, numPawns)
 	return None
