@@ -14,6 +14,7 @@ def move_piece(board, piece, dir):
 	for i in range(0, 8):
 		for j in range(0, 8):
 			if board[i][j] == piece:
+				newBoard[i][j] = ' '
 				break
 		else:
 			continue
@@ -24,7 +25,6 @@ def move_piece(board, piece, dir):
 			for x in range(i, -1, -1):
 				if newBoard[x][j] == 'p':
 					newBoard[x][j] = 'r'
-					newBoard[i][j] = ' '
 					xCoord = 8 - x
 					yCoord = j + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
@@ -34,7 +34,6 @@ def move_piece(board, piece, dir):
 			for y in range(j, 8):
 				if newBoard[i][y] == 'p':
 					newBoard[i][y] = 'r'
-					newBoard[i][j] = ' '
 					xCoord = 8 - i
 					yCoord = y + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
@@ -44,7 +43,6 @@ def move_piece(board, piece, dir):
 			for x in range(i, 8):
 				if newBoard[x][j] == 'p':
 					newBoard[x][j] = 'r'
-					newBoard[i][j] = ' '
 					xCoord = 8 - x
 					yCoord = i + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
@@ -54,8 +52,44 @@ def move_piece(board, piece, dir):
 			for y in range(j, -1, -1):
 				if newBoard[i][y] == 'p':
 					newBoard[i][y] = 'r'
-					newBoard[i][j] = ' '
 					xCoord = 8 - i
+					yCoord = y + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+	elif piece == 'b':
+		if dir == 1:
+			for x, y in zip(range(i, -1, -1), range(j, 8)):
+				if newBoard[x][y] == 'p':
+					newBoard[x][y] = 'b'
+					xCoord = 8 - x
+					yCoord = y + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		if dir == 2:
+			for x, y in zip(range(i, 8), range(j, 8)):
+				if newBoard[x][y] == 'p':
+					newBoard[x][y] = 'b'
+					xCoord = 8 - x
+					yCoord = y + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		if dir == 3:
+			for x, y in zip(range(i, 8), range(j, -1, -1)):
+				if newBoard[x][y] == 'p':
+					newBoard[x][y] = 'b'
+					xCoord = 8 - x
+					yCoord = y + 97
+					nextSol = str(chr(yCoord)) + str(xCoord) 
+					return newBoard, nextSol
+			return False, False
+		if dir == 4:
+			for x, y in zip(range(i, -1, -1), range(j, -1, -1)):
+				if newBoard[x][y] == 'p':
+					newBoard[x][y] = 'b'
+					xCoord = 8 - x
 					yCoord = y + 97
 					nextSol = str(chr(yCoord)) + str(xCoord) 
 					return newBoard, nextSol
@@ -76,8 +110,6 @@ def puzzle(board, piece, numDir, numPawns):
 	while bool:
 		currBoard = boardList[-1]
 		nextBoard, nextSol = move_piece(currBoard, piece, dir)
-		print (boardList)
-		print (dirList)
 		if nextBoard != False and dirList[-1][dir - 1] != True:
 			boardList.append(nextBoard)
 			solution.append(nextSol)
@@ -104,17 +136,17 @@ def puzzle(board, piece, numDir, numPawns):
 	return None
 
 def test():
-	board = [[' ', ' ', ' ', ' ', ' ', 'p', ' ', 'p'], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], ['p', ' ', ' ', ' ', ' ', 'r', 'p', ' '], [' ', ' ', ' ', ' ', ' ', 'p', 'p', ' ']]
-	pawns = 6
+	board = [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', 'p', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', 'p', ' ', 'p', ' ', 'p', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], ['p', ' ', ' ', ' ', 'b', ' ', ' ', ' '], [' ', 'p', ' ', ' ', ' ', 'p', ' ', ' '], [' ', ' ', 'p', ' ', ' ', ' ', ' ', ' ']]
+	piece = 'b'
 	dir = 4
-	piece = 'r'
+	pawns = 8
 	puzzle(board, piece, dir, pawns)
 
 def main():
 	board = [[' ' for x in range(0, 8)] for y in range(0, 8)]
 
 	#xCoord and yCoord takes in letters and numbers like an actual chess board
-	#board takes in the coordinates in collum major to put the pawns in the
+	#board takes in the coordinates in coloum major to put the pawns in the
 	#correct spot
 	numPawns = int(input("Enter the the amount of pawns on the board: "))
 	for i in range(0, numPawns):
