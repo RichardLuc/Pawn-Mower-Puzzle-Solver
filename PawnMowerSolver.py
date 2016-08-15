@@ -297,14 +297,12 @@ def main():
 		yCoord = int(input("Enter the y-coordinate of the pawn: "))
 		yCoord = 8 - yCoord
 		board[yCoord][xCoord] = 'p'
-		print(xCoord)
-		print(yCoord)
 	print("Here is what your board currently looks like:")
 	print_board(board)
 
 	piece = input("Enter the piece to control (rook, bishop, queen, knight):")
 	xCoord = ord(input("Enter the x-coordinate of the " + piece + ": "))
-	xCoord = 97 - xCoord
+	xCoord = xCoord - 97
 	yCoord = int(input("Enter the y-coordinate of the " + piece + ": "))
 	yCoord = 8 - yCoord
 	if piece == "rook":
